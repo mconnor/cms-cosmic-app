@@ -7,6 +7,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/next": "^9.0.0",
     "classnames": "2.2.6",
     "cosmicjs": "^3.2.43",
     "date-fns": "2.14.0",
@@ -20,9 +21,15 @@
     "remark-html": "11.0.2"
   },
   "devDependencies": {
+    "@types/node": "^14.11.8",
+    "@types/react": "^16.9.51",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-native": "^0.63.25",
+    "babel-preset-expo": "^8.3.0",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",
-    "tailwindcss": "^1.4.6"
+    "tailwindcss": "^1.4.6",
+    "typescript": "^4.0.3"
   },
   "license": "MIT"
 }

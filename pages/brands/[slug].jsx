@@ -7,7 +7,7 @@ import Header from '@/components/header'
 import PostHeader from '@/components/post-header'
 import SectionSeparator from '@/components/section-separator'
 import Layout from '@/components/layout'
-import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api'
+import { getAllBrandsWithSlug, getBrandAndMorePosts } from '@/lib/api'
 import PostTitle from '@/components/post-title'
 import Head from 'next/head'
 import { CMS_NAME } from '@/lib/constants'
@@ -29,20 +29,21 @@ export default function Post({ post, morePosts, preview }) {
             <article>
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                  {post.title} | StashBox
                 </title>
                 <meta
                   property="og:image"
-                  content={post.metadata.cover_image.imgix_url}
+                  content={post.metadata.logo.imgix_url}
                 />
               </Head>
-              <PostHeader
+              <h1>{post.title}</h1>
+             {/*  <PostHeader
                 title={post.title}
-                coverImage={post.metadata.cover_image}
+                coverImage={post.metadata.logo}
                 date={post.created_at}
                 author={post.metadata.author}
               />
-              <PostBody content={post.content} />
+              <PostBody content={post.content} /> */}
             </article>
             <SectionSeparator />
             {morePosts.length > 0 && <MoreStories posts={morePosts} />}
@@ -54,7 +55,7 @@ export default function Post({ post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ params, preview = null }) {
-  const data = await getPostAndMorePosts(params.slug, preview)
+  const data = await getBrandAndMorePosts(params.slug, preview)
   const content = await markdownToHtml(data.post?.metadata?.content || '')
 
   return {
@@ -70,9 +71,9 @@ export async function getStaticProps({ params, preview = null }) {
 }
 
 export async function getStaticPaths() {
-  const allPosts = (await getAllPostsWithSlug()) || []
+  const allPosts = (await getAllBrandsWithSlug()) || []
   return {
-    paths: allPosts.map((post) => `/posts/${post.slug}`),
+    paths: allPosts.map((post) => `/brands/${post.slug}`),
     fallback: true,
   }
 }

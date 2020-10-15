@@ -1,6 +1,18 @@
 import PostPreview from './post-preview'
 
-export default function MoreStories({ posts }) {
+
+
+type Post =  {
+    title: string;
+    content: string;
+}
+
+type Posts =  {
+    posts: Post[];
+}
+
+
+const   MoreStories: React.FC<Posts> = ({ posts }) => {
   return (
     <section>
       <h2 className="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
@@ -11,14 +23,16 @@ export default function MoreStories({ posts }) {
           <PostPreview
             key={post.slug}
             title={post.title}
-            coverImage={post.metadata.cover_image}
-            date={post.created_at}
+            
             author={post.metadata.author}
             slug={post.slug}
-            excerpt={post.metadata.excerpt}
+           
           />
         ))}
       </div>
     </section>
   )
 }
+
+
+export default  MoreStories
